@@ -1,0 +1,525 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>AT4004 - Intel 4004 and 4040 Processor Development Kit</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<div align="center"><center>
+
+<table border="0" width="100%">
+    <tr>
+        <td width="33%"><p align="left"><a href="../index.html"><font
+        face="Arial">&lt;&lt; Back</font></a></p>
+        </td>
+        <td width="33%">&nbsp;</td>
+        <td width="34%"><p align="right"><a href="index.html"><font
+        face="Arial">Cesky: <img src="img/cz.gif" border="0"
+        width="50" height="30"></font></a><font face="Arial">, <u>English:</u>
+        <img src="img/en2.gif" width="50" height="30"></font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p align="center"><font color="#FF8000" size="5" face="Arial"><strong>Intel
+4004 and 4040 4-bit processor development kit</strong></font></p>
+
+<p align="center"><font color="#FF8000" size="7" face="Arial"><strong>AT4004</strong></font></p>
+
+<p align="center"><font color="#FF8000" size="5" face="Arial"><strong>with
+Busicom 141-PF calculator emulation</strong></font></p>
+
+<p align="center"><font size="3" face="Arial">Last Update:
+10/03/2021</font></p>
+
+<p align="center"><font size="3" face="Arial">open source</font></p>
+
+<p align="center"><a href="dwn/AT4004_User_Manual_CZ.pdf"><font
+size="3" face="Arial">user manual in PDF</font></a><font size="3"
+face="Arial"> (so far in CZ, working on EN version)</font></p>
+
+<p align="center"><font size="3" face="Arial">AT4004 on GitHub: </font><a
+href="https://github.com/Panda381/AT4004"><font size="3"
+face="Arial">https://github.com/Panda381/AT4004</font></a></p>
+
+<p align="center"><a href="img/at4004_1.jpg"><img
+src="img/at4004_1b.jpg" border="0" width="450" height="286"></a></p>
+
+<p align="center"><a href="img/i4004.jpg"><img
+src="img/i4004_2m.jpg" border="0" width="200" height="168"></a> <a
+href="img/141pf_1.jpg"><img src="img/141pf_2.jpg" border="0"
+width="249" height="231"></a></p>
+
+<p><font face="Arial">The AT4004 is a development and tutorial
+kit used to provide a basic introduction to programming the Intel
+4004 and 4040 4-bit processor. The processor is simulated in real
+time using the ATmega8 processor, timed by an internal 8 MHz
+oscillator. The kit includes an emulation of the Busicom 141-PF
+calculator. Emulated programs can be compiled either as part of
+the built-in ROM of the ATmega8 processor, or edited by writing
+directly to the internal EEPROM memory in the built-in editor.
+From the emulated program, the 4-bit input and output ports can
+be accessed, brought out to both the CANON 9-pin connector and
+the built-in buttons and LEDs. It is also possible to access the
+other buttons and the character LCD display.</font></p>
+
+<p><font face="Arial">A ROM memory of 14 pages of 256 bytes (3584
+bytes at addresses 0x000 to 0xDFF) and an EEPROM memory for
+direct program editing of 2 pages of 256 bytes (512 bytes at
+addresses 0xE00 to 0xFFF) are available for the emulated program.
+As RAM, the emulated program has 5 memory banks, that is a total
+of 1600 digits or 800 bytes. The kit can be powered via a USB
+cable either from the computer's USB connector or from a USB +5V
+charger.</font></p>
+
+<p><font face="Arial">The Busicom 141-PF calculator (the UniCom
+141P was the OEM version) was developed in 1971 and was based on
+the Intel 4004 processor, which was developed by Intel for this
+purpose. The processor operated with a clock frequency of 740 kHz
+and instruction times of 10.8 and 21.6 us. The calculator did not
+contain a display but a printer with a rotary print drum and a
+print width of 18 characters. The calculator could display up to
+14 floating-point digits and internally calculated to 16 digits.</font></p>
+
+<p><font size="2" face="Arial"><em>Note: Click to enlarge images</em></font></p>
+
+<p><font size="5" face="Arial"><strong>Wiring diagram</strong></font></p>
+
+<p><font face="Arial">The USB connector is only used to power the
+kit from an external +5V charger or from the USB port. The
+processor uses an internal 8 MHz RC oscillator. Outputs from the
+processor are connected to the LEDs via 2K2 resistors and to the
+port via 470 resistors. The values of the resistors for the LEDs
+may need to be adjusted to the luminosity of the LEDs used. The
+input pins of the port are connected in parallel to the buttons.
+If you connect output signals to the port, do not use buttons for
+the inputs to avoid shorting the connected outputs. Resistor R1
+controls the bias voltage for the display contrast. You may need
+to change it to a different value for a different display,
+typically 1K is better for some displays. Resistor R2 controls
+the intensity of the display backlight.</font></p>
+
+<p><a href="img/AT4004_diagram.jpg"><img
+src="img/AT4004_diagramm.jpg" border="0" width="1024"
+height="618"></a></p>
+
+<p><font size="5" face="Arial"><strong>Construction</strong></font></p>
+
+<p><font face="Arial">The circuit board has a size of 100 x 75 mm
+and the free version of Eagle can be used to design it. I make
+the PCB using photo path from photocuprextit, here just one side
+is sufficient. Micro switches without additional fingerboard are
+used as buttons. A paper label with button labels and button
+holes cut out can be folded over the buttons. The processor is
+plugged into a DIP28 socket, this allows for easy replacement
+when replacing an emulated ROM version or when damaged through
+ports. The LCD is connected to the board via a pin and pinhole
+rail and can thus be easily removed. The surface joint is ready
+for both a 5.7 mm and 8 mm high pinhole rail.</font></p>
+
+<p><font face="Arial">Bottom side of the PCB:</font></p>
+
+<p><a href="img/AT4004_bottom.jpg"><font face="Arial"><img
+src="img/AT4004_bottomm.jpg" border="0" width="500" height="394"></font></a></p>
+
+<p><font face="Arial">Top side of PCB - can be replaced with 4
+wires:</font></p>
+
+<p><a href="img/AT4004_top.jpg"><font face="Arial"><img
+src="img/AT4004_topm.jpg" border="0" width="500" height="394"></font></a></p>
+
+<p><font face="Arial">Printing on the PCB:</font></p>
+
+<p><a href="img/AT4004_print.jpg"><font face="Arial"><img
+src="img/AT4004_printm.jpg" border="0" width="500" height="394"></font></a></p>
+
+<p><font face="Arial">Component layout:</font></p>
+
+<p><a href="img/AT4004_mounting.jpg"><img
+src="img/AT4004_mountingm.jpg" border="0" width="500"
+height="394"></a></p>
+
+<p><font face="Arial">Pillars are screwed into the corners of the
+board, serving as feet:</font></p>
+
+<p><a href="img/at4004_2.jpg"><font face="Arial"><img
+src="img/at4004_2m.jpg" border="0" width="320" height="163"></font></a></p>
+
+<p><font face="Arial">Mounted plate, printing is on paper glued
+on the PCB and covered with adhesive:</font></p>
+
+<p><a href="img/at4004_3.jpg"><font face="Arial"><img
+src="img/at4004_3m.jpg" border="0" width="320" height="271"></font></a></p>
+
+<p><font face="Arial">The display is connected via a corner pin
+rail:</font></p>
+
+<p><a href="img/at4004_4.jpg"><font face="Arial"><img
+src="img/at4004_4m.jpg" border="0" width="320" height="157"></font></a></p>
+
+<p><font face="Arial">The assembly, on top the display is held by
+a pin rail, on the bottom it is screwed to two M3 x 8mm pillars:</font></p>
+
+<p><a href="img/at4004_5.jpg"><font face="Arial"><img
+src="img/at4004_5m.jpg" border="0" width="320" height="199"></font></a></p>
+
+<p><font face="Arial">You can see from the worn corners of the
+printing paper that the kit has been worked a lot and is now
+tired :-D :</font></p>
+
+<p><a href="img/at4004_6.jpg"><font face="Arial"><img
+src="img/at4004_6m.jpg" border="0" width="320" height="160"></font></a></p>
+
+<p><font face="Arial">The labels for the buttons are printed on
+an inkjet printer on plain paper, taped on both sides and then
+the holes for the buttons and LEDs are cut with a 4 mm cut-out
+(the first label is for the programming mode, the second for the
+Busicom 141-PF calculator emulation):</font></p>
+
+<p><a href="img/aT4004_label1.jpg"><font face="Arial"><img
+src="img/aT4004_label1m.jpg" border="0" width="320" height="190"></font></a><font
+face="Arial"> </font><a href="img/aT4004_label2.jpg"><font
+face="Arial"><img src="img/aT4004_label2m.jpg" border="0"
+width="320" height="190"></font></a></p>
+
+<p><font size="5" face="Arial"><strong>Starting Up</strong></font></p>
+
+<p><font face="Arial">When programming the firmware into the
+ATmega8 processor it is necessary to set the processor fuses as
+follows: LOW = 0xE4, HIGH = 0xD1 (the processor works with the
+internal 8 MHz RC generator). Be careful if you use a processor
+from another device switched to an external crystal - in this kit
+(without crystal) it may not be possible to program it, it may be
+necessary to connect a crystal externally to the processor. This
+does not apply to a new unused processor, this is always switched
+to the internal RC oscillator.</font></p>
+
+<p><font face="Arial">The display backlight should light up when
+power is connected:</font></p>
+
+<p><a href="img/at4004_7.jpg"><font face="Arial"><img
+src="img/at4004_7m.jpg" border="0" width="320" height="212"></font></a></p>
+
+<p><font face="Arial">When the processor and display are working
+properly, the opening text should appear for less than a second.
+If the text is not visible, you may just need to lower the
+display contrast resistance R1 from 2K2 to 1K0:</font></p>
+
+<p><a href="img/at4004_8.jpg"><font face="Arial"><img
+src="img/at4004_8m.jpg" border="0" width="320" height="204"></font></a></p>
+
+<p><font size="5" face="Arial"><strong>How to use the kit</strong></font></p>
+
+<p><font face="Arial">When you turn on the AT4004 kit, the
+programming edit mode will start (in the photo with the
+programming button label on). </font></p>
+
+<p><a href="img/at4004_9.jpg"><img src="img/at4004_9m.jpg"
+border="0" width="320" height="204"></a></p>
+
+<p><font face="Arial">In the programming mode it is possible to
+view the emulated program in ROM memory (address 0x000 to 0xDFF)
+and edit the program in EEPROM memory (address 0xE00 to 0xFFF).
+The first row of the display shows the 5 bytes of memory around
+the current address. The byte from the current address is
+delimited by slash brackets. The second row of the display shows
+the contents of the current address: the address, the contents of
+the address in HEX code, and the simplified mnemonic of the
+instruction (without parameters).</font></p>
+
+<p><font face="Arial">The program can be scrolled through with
+the SST (step forward) and BST (step backward) buttons. Scrolling
+is byte by byte, not instruction by instruction. The GTO button
+can be used to jump to a specified address. The address entry can
+be interrupted by pressing e.g. SST or BST. When editing a
+program in EEPROM (addresses 0xE00 to 0xFFF), a new byte value is
+written by entering 2 HEX digits. The entry can be interrupted by
+pressing e.g. SST or BST. The program can be started either from
+the current address with the 2ND RUN button or from the beginning
+of 256B page 0..15 with the 2ND RUN0 to RUNF buttons. The started
+program is interrupted by pressing RESET. The 2ND button selects
+an alternative button function. DEL and INS delete or insert a
+byte at the current address, but only within the range of the
+current 256B page.</font></p>
+
+<p><font size="5" face="Arial"><strong>Busicom 141-PF calculator
+emulation</strong></font></p>
+
+<p><a href="img/141pf_1.jpg"><img src="img/141pf_2.jpg"
+border="0" width="249" height="231"></a></p>
+
+<p><font face="Arial">To start the Busicom 141-PF calculator
+emulation after switching on the kit, press the 2ND RUN buttons
+(start from the current address 0) or press 2ND RUN0. The display
+of the kit emulates the output to the printer and so the data
+appears only after some operation has been performed.</font></p>
+
+<p><a href="img/at4004_10.jpg"><font face="Arial"><img
+src="img/at4004_10m.jpg" border="0" width="320" height="218"></font></a></p>
+
+<p><font face="Arial">LED indicators: M (yellow) is non-zero
+memory content, OVF (red) overflow, NEG (green) negative result.</font></p>
+
+<p><font face="Arial">The sum of '+' and the difference '-' is
+working with the accumulator. First enter the number and then the
+'+' or '-' operation to be performed on the number. Finally, the
+accumulator contents are displayed with '='. For example, you
+would enter '3 - 2 =' as '3 + 2 - ='.</font></p>
+
+<p><font face="Arial">When multiplying by 'x' and dividing by
+':', follow the same procedure as with current calculators, e.g.
+&quot;2 x 3 =&quot;.</font></p>
+
+<p><font face="Arial">Press the calculator buttons slowly, about
+2 presses per second maximum, otherwise some presses may be lost
+(the keyboard operation is slow).</font></p>
+
+<p><font face="Arial">The setting of the number of decimal places
+and the rounding mode will only become apparent the next time the
+result is output. The 'FL' (floating) rounding mode will display
+the number with maximum precision with the removal of
+insignificant zeros, but will only appear for multiplication and
+division. '54' mode rounds the result, 'N' mode disables
+rounding. 'DP0' to 'DP8' sets the number of decimal places to 0
+to 8.</font></p>
+
+<p><font face="Arial">'C' clears everything (except memory), 'CE'
+clears a wrong entry. 'S' is used to enter a negative number.
+'SUB' displays the intermediate result of addition and
+subtraction. 'EX' swaps registers during multiplication and
+division. 'CM' displays memory and clears it. 'RM' displays
+memory and keeps it. 'M+' and 'M-' add or subtract a number from
+memory. 'ADV' is paper shift (line feed).</font></p>
+
+<p><font size="5" face="Arial"><strong>Sample Programs</strong></font></p>
+
+<p><font face="Arial">The sample programs can be compiled using
+the included AS4 compiler. From the compilation listing, write
+the HEX codes into the EEPROM memory of the kit and run the
+program. The source codes for the sample programs can be found in
+the AT4004 firmware source code.</font></p>
+
+<p><font face="Arial"><strong>Example 1 - copy input to output</strong></font></p>
+
+<p><font face="Arial">Write the program from address 0xE00 and
+run it with the 2ND RUNE buttons. Pressing the IN0..IN3 buttons
+will light the LEDs on OUT0 to OUT3.</font></p>
+
+<p><a href="img/at4004_11.jpg"><font face="Arial"><img
+src="img/at4004_11m.jpg" border="0" width="320" height="206"></font></a></p>
+
+<p><font face="Courier New">E00 F0<br>
+E01 FD<br>
+E02 20 30<br>
+E04 21<br>
+E05 EA<br>
+E06 F4<br>
+E07 20 40<br>
+E09 21<br>
+E0A E1<br>
+E0B 4E 02</font></p>
+
+<p><font face="Arial"><strong>Example 2 - Flashing with LED</strong></font></p>
+
+<p><font face="Arial">Write the program from address 0xE80 and
+run with the GTO E 8 0 2ND RUN buttons. The LEDs will flash
+alternately with a delay of 250 ms.</font></p>
+
+<p><a href="img/at4004_12.jpg"><font face="Arial"><img
+src="img/at4004_12m.jpg" border="0" width="320" height="203"></font></a></p>
+
+<p><font face="Courier New">E80 F0<br>
+E81 FD<br>
+E82 20 40<br>
+E84 21<br>
+E85 D1<br>
+E86 E1<br>
+E87 5E 97<br>
+E89 D2<br>
+E8A E1<br>
+E8B 5E 97<br>
+E8D D4 <br>
+E8E E1<br>
+E8F 5E 97<br>
+E91 D8<br>
+E92 E1<br>
+E93 5E 97<br>
+E95 4E 85<br>
+E97 22 D5<br>
+E99 24 6F <br>
+E9B 75 9B<br>
+E9D 74 9B<br>
+E9F 73 9B<br>
+EA1 72 9B<br>
+EA3 C0</font></p>
+
+<p><font face="Arial"><strong>Example 3 - text display</strong></font></p>
+
+<p><font face="Arial">Write the program from address 0xF00 and
+run it with the 2ND RUNF buttons. The display shows the text.</font></p>
+
+<p><a href="img/at4004_13.jpg"><font face="Arial"><img
+src="img/at4004_13m.jpg" border="0" width="320" height="215"></font></a></p>
+
+<p><font face="Courier New">F00 22 40<br>
+F02 23<br>
+F03 D0<br>
+F04 E2<br>
+F05 22 60<br>
+F07 23<br>
+F08 20 18<br>
+F0A 34<br>
+F0B A4<br>
+F0C E2<br>
+F0D A5<br>
+F0E E2<br>
+F0F 61<br>
+F10 A1<br>
+F11 1C 14<br>
+F13 60<br>
+F14 73 0A<br>
+F16 4F 16<br>
+F18 2A<br>
+F19 20<br>
+F1A 48<br>
+F1B 65<br>
+F1C 6C<br>
+F1D 6C<br>
+F1E 6F<br>
+F1F 20<br>
+F20 57<br>
+F21 6F<br>
+F22 72<br>
+F23 6C<br>
+F24 64<br>
+F25 21<br>
+F26 20<br>
+F27 2A</font></p>
+
+<h2><font size="5" face="Arial">Downloads</font></h2>
+
+<p><a href="dwn/AT4004_diagram.zip"><font face="Arial">Wiring
+diagram in Eagle Free</font></a></p>
+
+<p><a href="dwn/AT4004_doc.zip"><font face="Arial">4004 processor
+and 141-PF calculator documentation</font></a></p>
+
+<p><a href="dwn/AT4004_help.zip"><font face="Arial">AT4004 kit
+User Manual</font></a><font size="3" face="Arial"> (so far in CZ,
+working on EN version)</font></p>
+
+<p><a href="dwn/AT4004_png.zip"><font face="Arial">Graphic
+documents (schematic and PCB)</font></a></p>
+
+<p><a href="dwn/AT4004_src.zip"><font face="Arial">Source codes
+and firmware of the AT4004 kit</font></a></p>
+
+<p><a href="dwn/AT4004_util.zip"><font face="Arial">Utility, AS4
+compiler</font></a></p>
+
+<h2><font face="Arial">Used components</font></h2>
+
+<ul>
+    <li><font face="Arial">518-312, 1 pc, LED 5mm, red, 600mcd,
+        60°, diffuse 503VD2E-V1-4I, 2,80 Kč </font><a
+        href="https://www.gme.cz/led-5mm-red-600-60-diff"><font
+        face="Arial">https://www.gme.cz/led-5mm-red-600-60-diff</font></a></li>
+    <li><font face="Arial">518-267, 1 pc, LED 5mm, yellow,
+        780mcd, 60°, diffuse 503UYD2E-Y2-4G, 3,60 Kč </font><a
+        href="https://www.gme.cz/led-5mm-yellow-780-60-diff"><font
+        face="Arial">https://www.gme.cz/led-5mm-yellow-780-60-diff</font></a></li>
+    <li><font face="Arial">518-311, 1 pc, LED 5mm, green,
+        1700mcd, 60°, diffuse 504PGD2E-G5-2C, 4,50 Kč </font><a
+        href="https://www.gme.cz/led-5mm-green-1700-60-diff"><font
+        face="Arial">https://www.gme.cz/led-5mm-green-1700-60-diff</font></a></li>
+    <li><font face="Arial">518-266, 1 pc, LED 5mm, blue, 460mcd,
+        60°, diffuse 504BD2E-B4-1G, 7 Kč </font><a
+        href="https://www.gme.cz/led-5mm-blue-460-60-diff"><font
+        face="Arial">https://www.gme.cz/led-5mm-blue-460-60-diff</font></a></li>
+    <li><font face="Arial">432-193, 1 pc, Microcontroler
+        ATMEGA8L-8PU, 49 Kč </font><a
+        href="https://www.gme.cz/atmega8l-8pu-dil28-atmel"><font
+        face="Arial">https://www.gme.cz/atmega8l-8pu-dil28-atmel</font></a></li>
+    <li><font face="Arial">823-026, 1 pc, DIP socket 28pin
+        spacing 2,54mm SOKL 28U, 4,30 Kč </font><a
+        href="https://www.gme.cz/sokl-28u"><font face="Arial">https://www.gme.cz/sokl-28u</font></a></li>
+    <li><font face="Arial">630-158, 25 pcs, Microswitch do DPS,
+        1pole, OFF-(ON), height 9,5mm TC-0108-T, 2,03 x 25 =
+        50,75 Kč </font><a href="https://www.gme.cz/tc-0108-t"><font
+        face="Arial">https://www.gme.cz/tc-0108-t</font></a></li>
+    <li><font face="Arial">775-069, 1 pc, LCD alphanumeric
+        display 2x16 chars, yellow-green, HD44780 DM1602AYG, 115
+        Kč </font><a
+        href="https://www.gme.cz/alfanumericky-lcd-displej-16x2-zlutozeleny-hd44780"><font
+        face="Arial">https://www.gme.cz/alfanumericky-lcd-displej-16x2-zlutozeleny-hd44780</font></a></li>
+    <li><font face="Arial">832-120, 1 pc, USB 2.0 B socket do DPS
+        90° DS1099-WN0, 13 Kč </font><a
+        href="https://www.gme.cz/konektor-usb1x90b-pcb"><font
+        face="Arial">https://www.gme.cz/konektor-usb1x90b-pcb</font></a></li>
+    <li><font face="Arial">801-181, 1 pc, D-Sub 9pin socket do
+        DPS 90° CAN 9 Z 90, 13 Kč </font><a
+        href="https://www.gme.cz/konektor-can-9-z-90-con"><font
+        face="Arial">https://www.gme.cz/konektor-can-9-z-90-con</font></a></li>
+    <li><font face="Arial">800-257, 1 pc, Connector fork pitch
+        2,54mm, 2x3pins to DPS MLW06G, 6,50 Kč </font><a
+        href="https://www.gme.cz/konektor-mlw06g-con"><font
+        face="Arial">https://www.gme.cz/konektor-mlw06g-con</font></a></li>
+    <li><font face="Arial">832-238, 1 pc, Hollow bar 1x20pin,
+        pitch 2,54mm, height 5,7mm, 90°pin BLW120G-V5,7, 9 Kč </font><a
+        href="https://www.gme.cz/dutinkova-lista-blw20g-v5-7mm"><font
+        face="Arial">https://www.gme.cz/dutinkova-lista-blw20g-v5-7mm</font></a></li>
+    <li><font face="Arial">...alternative: 832-048, 1 pc, Hollow
+        bar 1x20pin, pitch 2,54mm, height 8mm, 90°pin
+        BLW120G-V8,0, 9,20 Kč </font><a
+        href="https://www.gme.cz/dutinkova-lista-blw820g"><font
+        face="Arial">https://www.gme.cz/dutinkova-lista-blw820g</font></a></li>
+    <li><font face="Arial">832-018, 1 pc, Pin strip 1x20pin,
+        pitch 2,54mm, 90° S1G20C W90, 5,30 Kč </font><a
+        href="https://www.gme.cz/oboustranny-kolik-s1g20w-2-54mm"><font
+        face="Arial">https://www.gme.cz/oboustranny-kolik-s1g20w-2-54mm</font></a></li>
+    <li><font face="Arial">119-398, 1 pc, Metal oxid resistor THT
+        RM 100R 0,4W 1% 0204, 2,20 Kč </font><a
+        href="https://www.gme.cz/rm-100r-0204-0-4w-1-hitano"><font
+        face="Arial">https://www.gme.cz/rm-100r-0204-0-4w-1-hitano</font></a></li>
+    <li><font face="Arial">119-131, 8 pcs, Metal oxid resistor
+        THT RM 470R 0,4W 1% 0204, 8 * 2,60 = 20,8 Kč </font><a
+        href="https://www.gme.cz/rm-470r-0204-0-4w-1-yageo"><font
+        face="Arial">https://www.gme.cz/rm-470r-0204-0-4w-1-yageo</font></a></li>
+    <li><font face="Arial">119-399, 6 pcs, Metal oxid resistor
+        THT RM 2k2 0,4W 1% 0204, 6 * 2,20 = 13,20 Kč </font><a
+        href="https://www.gme.cz/rm-2k2-0204-0-4w-1-hitano"><font
+        face="Arial">https://www.gme.cz/rm-2k2-0204-0-4w-1-hitano</font></a></li>
+    <li><font face="Arial">120-093, 1 pc, Ceramic capacitor CK
+        22n/50V X7R RM5,08 10%, 1,80 Kč </font><a
+        href="https://www.gme.cz/ck-22n-50v-x7r-10-rm5-08-hitano"><font
+        face="Arial">https://www.gme.cz/ck-22n-50v-x7r-10-rm5-08-hitano</font></a></li>
+    <li><font face="Arial">120-060, 2 pcs, Ceramic capacitor CK
+        100n/63V Y5V RM5,08 +80/-20%, 2 * 1,80 = 3,60 Kč </font><a
+        href="https://www.gme.cz/ck-100n-63v-y5v-rm5-08-80-20"><font
+        face="Arial">https://www.gme.cz/ck-100n-63v-y5v-rm5-08-80-20</font></a></li>
+    <li><font face="Arial">+ PCB, 6 pcs pillar M3 x 8 mm, 6 pcs
+        mother M3, 2 pcs screw M3, pad M3</font></li>
+</ul>
+
+<p><font face="Arial">Total price for all 335 CZK (without PCB).</font></p>
+
+<p align="right"><font face="Arial">Miroslav Nemecek<br>
+</font><a href="mailto:Panda38@seznam.cz"><font face="Arial">Panda38@seznam.cz</font></a></p>
+<div align="center"><center>
+
+<table border="0" width="100%">
+    <tr>
+        <td width="33%"><p align="left"><a href="../index.html"><font
+        face="Arial">&lt;&lt; Back</font></a></p>
+        </td>
+        <td width="33%">&nbsp;</td>
+        <td width="34%">&nbsp;</td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>AT4004 - Vývojový kit procesoru Intel 4004 a 4040</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<div align="center"><center>
+
+<table border="0" width="100%">
+    <tr>
+        <td width="33%"><p align="left"><a href="../index.html"><font
+        face="Arial">&lt;&lt; Zpět</font></a></p>
+        </td>
+        <td width="33%">&nbsp;</td>
+        <td width="34%"><p align="right"><font face="Arial">  <u>Česky:</u>
+        <img src="img/cz2.gif" width="50" height="30">, </font><a
+        href="index_en.html"><font face="Arial">English: <img
+        src="img/en.gif" border="0" width="50" height="30"></font></a></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p align="center"><font color="#FF8000" size="5" face="Arial"><strong>Vývojový
+kit 4-bitového procesoru Intel 4004 a 4040</strong></font></p>
+
+<p align="center"><font color="#FF8000" size="7" face="Arial"><strong>AT4004</strong></font></p>
+
+<p align="center"><font color="#FF8000" size="5" face="Arial"><strong>s
+emulací kalkulátoru Busicom 141-PF</strong></font></p>
+
+<p align="center"><font size="3" face="Arial">Poslední
+aktualizace: 3.10.2021</font></p>
+
+<p align="center"><font size="3" face="Arial">open source</font></p>
+
+<p align="center"><a href="dwn/AT4004_User_Manual_CZ.pdf"><font
+size="3" face="Arial">uživatelská příručka v PDF</font></a><font
+size="3" face="Arial"> (zatím v CZ, na EN verzi se pracuje)</font></p>
+
+<p align="center"><font size="3" face="Arial">AT4004 na GitHub: </font><a
+href="https://github.com/Panda381/AT4004"><font size="3"
+face="Arial">https://github.com/Panda381/AT4004</font></a></p>
+
+<p align="center"><a href="img/at4004_1.jpg"><img
+src="img/at4004_1b.jpg" border="0" width="450" height="286"></a></p>
+
+<p align="center"><a href="img/i4004.jpg"><img
+src="img/i4004_2m.jpg" border="0" width="200" height="168"></a> <a
+href="img/141pf_1.jpg"><img src="img/141pf_2.jpg" border="0"
+width="249" height="231"></a></p>
+
+<p><font face="Arial">AT4004 je vývojový a výukový kit sloužící
+k základnímu seznámení s programováním 4-bitového
+procesoru Intel 4004 a 4040. Procesor je simulován v reálném
+čase pomocí procesoru ATmega8, časovaného interním
+oscilátorem 8 MHz. Součástí kitu je emulace kalkulátoru
+Busicom 141-PF. Emulované programy lze kompilovat buď jako
+součást vestavěné ROM paměti procesoru ATmega8, nebo
+editovat přímým zápisem do interní EEPROM paměti ve
+vestavěném editoru. Z emulovaného programu lze přistupovat ke
+4-bitovému vstupnímu a výstupnímu portu, vyvedenému jednak
+na 9-pinový konektor CANON, a jednak na vestavěná tlačítka a
+LED diody. Je možné též přistupovat na ostatní tlačítka a
+znakový LCD displej.</font></p>
+
+<p><font face="Arial">Pro emulovaný program je k dispozici ROM
+paměť o velikosti 14 stránek po 256 bajtech (3584 bajtů na
+adresách 0x000 až 0xDFF) a EEPROM paměť, určená k přímé
+editaci programu, o velikosti 2 stránky po 256 bajtech (512 bajtů
+na adresách 0xE00 až 0xFFF). Jako RAM má emulovaný program k
+dispozici 5 paměťových bank, to je celkem 1600 číslic, resp.
+800 bajtů. Kit lze napájet přes USB kabel buď z USB konektoru
+počítače, nebo z USB +5V nabíječky.</font></p>
+
+<p><font face="Arial">Kalkulátor Busicom 141-PF (UniCom 141P
+byla jeho OEM verze) vznikl v roce 1971 a byl postaven na
+procesoru Intel 4004, který firma Intel pro tento účel
+vyvinula. Procesor pracoval s hodinovou frekvencí 740 kHz a
+dobou instrukcí 10,8 a 21,6 us. Kalkulátor neobsahoval displej,
+ale tiskárnu s otočným tiskovým bubnem a se šířkou tisku
+18 znaků. Kalkulátor mohl zobrazit až 14 číslic s plovoucí
+desetinnou tečkou, vnitřně počítal s přesností 16 číslic.</font></p>
+
+<p><font size="2" face="Arial"><em>Pozn.: Obrázky zde uvedené
+zvětšíte kliknutím</em></font></p>
+
+<p><font size="5" face="Arial"><strong>Schéma zapojení</strong></font></p>
+
+<p><font face="Arial">Konektor USB je využit pouze k napájení
+kitu z externí nabíječky +5V nebo z USB portu. Procesor používá
+interní RC oscilátor 8 MHz. Výstupy z procesoru jsou vedeny na
+LED diody přes rezistory 2K2 a na port přes rezistory 470.
+Hodnoty rezistorů pro LED diody bude možná potřeba
+přizpůsobit svítivosti použitých LED diod. Ke vstupním pinům
+portu jsou paralelně připojena tlačítka. Připojíte-li k
+portu výstupní signály, nepoužívejte tlačítka pro vstupy,
+aby nedocházelo ke zkratování připojených výstupů. Odpor
+R1 reguluje předpětí pro kontrast displeje. Pro jiný displej
+může být nutné změnit na jinou hodnotu, typicky u některých
+displejů je lepší hodnota 1K. Odpor R2 řídí intenzitu
+podsvícení displeje.</font></p>
+
+<p><a href="img/AT4004_diagram.jpg"><img
+src="img/AT4004_diagramm.jpg" border="0" width="1024"
+height="618"></a></p>
+
+<p><font size="5" face="Arial"><strong>Konstrukce</strong></font></p>
+
+<p><font face="Arial">Deska plošných spojů má rozměr 100 x
+75 mm a lze k jejímu návrhu použít free verzi Eagle. Plošný
+spoj vyrábím fotocestou z fotocuprextitu, zde stačí
+jednostranný. Jako tlačítka jsou použity mikrospínače bez
+přídavného hmatníku. Přes tlačítka lze přeložit papírový
+štítek s popiskami tlačítek a vyseknutými otvory pro tlačítka.
+Procesor je zasunut do patice DIP28, to umožňuje jeho snadnou výměnu
+při výměně emulované verze ROM nebo při poškození přes
+porty. LCD displej je k desce připojen přes pinovou a
+dutinkovou lištu a lze tak snadno odejmout. Plošný spoj je připraven
+jak pro dutinkovou lištu o výšce 5,7 mm, tak o výšce 8 mm.</font></p>
+
+<p><font face="Arial">Spodní strana plošného spoje:</font></p>
+
+<p><a href="img/AT4004_bottom.jpg"><font face="Arial"><img
+src="img/AT4004_bottomm.jpg" border="0" width="500" height="394"></font></a></p>
+
+<p><font face="Arial">Horní strana plošného spoje - lze
+nahradit 4 drátovými propojkami:</font></p>
+
+<p><a href="img/AT4004_top.jpg"><font face="Arial"><img
+src="img/AT4004_topm.jpg" border="0" width="500" height="394"></font></a></p>
+
+<p><font face="Arial">Potisk plošného spoje:</font></p>
+
+<p><a href="img/AT4004_print.jpg"><font face="Arial"><img
+src="img/AT4004_printm.jpg" border="0" width="500" height="394"></font></a></p>
+
+<p><font face="Arial">Rozmístění součástek:</font></p>
+
+<p><a href="img/AT4004_mounting.jpg"><img
+src="img/AT4004_mountingm.jpg" border="0" width="500"
+height="394"></a></p>
+
+<p><font face="Arial">Do rohů desky jsou přišroubovány
+sloupky, sloužící jako nožičky:</font></p>
+
+<p><a href="img/at4004_2.jpg"><font face="Arial"><img
+src="img/at4004_2m.jpg" border="0" width="320" height="163"></font></a></p>
+
+<p><font face="Arial">Osazená deska, potisk je na papíře
+přilepeném na plošném spoji a překrytém izolepou:</font></p>
+
+<p><a href="img/at4004_3.jpg"><font face="Arial"><img
+src="img/at4004_3m.jpg" border="0" width="320" height="271"></font></a></p>
+
+<p><font face="Arial">Displej je připojen přes rohovou pinovou
+lištu:</font></p>
+
+<p><a href="img/at4004_4.jpg"><font face="Arial"><img
+src="img/at4004_4m.jpg" border="0" width="320" height="157"></font></a></p>
+
+<p><font face="Arial">Sestava, nahoře je displej držen pinovou
+lištou, dole je přišroubován ke dvěma sloupkům M3 x 8mm:</font></p>
+
+<p><a href="img/at4004_5.jpg"><font face="Arial"><img
+src="img/at4004_5m.jpg" border="0" width="320" height="199"></font></a></p>
+
+<p><font face="Arial">Podle odulých rohů potiskového papíru
+je vidět, že se s kitem už hodně pracovalo a teď je už
+unavený :-D :</font></p>
+
+<p><a href="img/at4004_6.jpg"><font face="Arial"><img
+src="img/at4004_6m.jpg" border="0" width="320" height="160"></font></a></p>
+
+<p><font face="Arial">Štítky pro tlačítka jsou vytištěné
+na inkoustové tiskárně na běžný papír, z obou stran přelepené
+izolepou a poté vysekané díry pro tlačítka a LED diody výsečníkem
+4 mm (první štítek je pro režim programování, druhý pro
+emulaci kalkulačky Busicom 141-PF):</font></p>
+
+<p><a href="img/aT4004_label1.jpg"><font face="Arial"><img
+src="img/aT4004_label1m.jpg" border="0" width="320" height="190"></font></a><font
+face="Arial"> </font><a href="img/aT4004_label2.jpg"><font
+face="Arial"><img src="img/aT4004_label2m.jpg" border="0"
+width="320" height="190"></font></a></p>
+
+<p><font size="5" face="Arial"><strong>Oživení</strong></font></p>
+
+<p><font face="Arial">Při programování firmware do procesoru
+ATmega8 je potřeba nastavit pojistky procesoru takto: LOW =
+0xE4, HIGH = 0xD1 (procesor pracuje s interním RC generátorem 8
+MHz). Pozor pokud použijete procesor z jiného zařízení přepnutý
+na externí krystal - v tomto kitu (bez krystalu) nemusí jít
+naprogramovat, může být nutné k procesoru externě připojit
+krystal. To se netýká nového nepoužitého procesoru, ten je vždy
+přepnut na interní RC oscilátor.</font></p>
+
+<p><font face="Arial">Po připojení napájení by se mělo rozsvítit
+podsvícení displeje:</font></p>
+
+<p><a href="img/at4004_7.jpg"><font face="Arial"><img
+src="img/at4004_7m.jpg" border="0" width="320" height="212"></font></a></p>
+
+<p><font face="Arial">Při správné funkci procesoru a displeje
+by se měl po dobu necelé sekundy zobrazit úvodní text.
+Nebude-li text viditelný, možná bude jen nutné snížit odpor
+kontrastu displeje R1 z 2K2 na 1K0:</font></p>
+
+<p><a href="img/at4004_8.jpg"><font face="Arial"><img
+src="img/at4004_8m.jpg" border="0" width="320" height="204"></font></a></p>
+
+<p><font size="5" face="Arial"><strong>Jak kit použít</strong></font></p>
+
+<p><font face="Arial">Po zapnutí kitu AT4004 se spustí
+programovací editační mód (na fotce s položeným štítkem
+tlačítek pro programování). </font></p>
+
+<p><a href="img/at4004_9.jpg"><img src="img/at4004_9m.jpg"
+border="0" width="320" height="204"></a></p>
+
+<p><font face="Arial">V programovacím módu lze prohlížet
+emulovaný program v ROM paměti (adresa 0x000 až 0xDFF) a
+editovat program v EEPROM paměti (adresa 0xE00 až 0xFFF). Na
+prvním řádku displeje se zobrazí 5 bajtů paměti v okolí
+aktuální adresy. Bajt z aktuální adresy je ohraničen lomenými
+závorkami. Na druhém řádku displeje je obsah aktuální
+adresy: adresa, obsah adresy v HEX kódu a zjednodušený
+mnemotechnický tvar instrukce (bez parametrů).</font></p>
+
+<p><font face="Arial">Programem lze listovat tlačítky SST (krok
+vpřed) a BST (krok zpět). Listuje se po bajtech, ne po instrukcích.
+Tlačítkem GTO lze skočit na zadanou adresu. Zadávání adresy
+lze přerušit stiskem např. SST nebo BST. Při editaci programu
+v EEPROM (adresy 0xE00 až 0xFFF) se zapíše nová hodnota bajtu
+zadáním 2 HEX číslic. Zadávání lze přerušit stiskem
+např. SST nebo BST. Program lze spustit buď z aktuální adresy
+tlačítkem 2ND RUN nebo ze začátku 256B stránky 0..15 tlačítky
+2ND RUN0 až RUNF. Spuštěný program se přeruší stiskem
+RESET. Tlačítko 2ND volí alternativní funkci tlačítka. DEL
+a INS smažou nebo vloží bajt na aktuální adresu, ale pouze v
+rozsahu aktuální 256B stránky.</font></p>
+
+<p><font size="5" face="Arial"><strong>Emulace kalkulátoru
+Busicom 141-PF</strong></font></p>
+
+<p><a href="img/141pf_1.jpg"><img src="img/141pf_2.jpg"
+border="0" width="249" height="231"></a></p>
+
+<p><font face="Arial">Emulaci kalkulátoru Busicom 141-PF
+spustíte po zapnutí kitu stiskem tlačítek 2ND RUN (start od
+aktuální adresy 0) nebo stiskem 2ND RUN0. Displej kitu emuluje
+výstup na tiskárnu a tak se údaj objeví až po provedení některé
+operace.</font></p>
+
+<p><a href="img/at4004_10.jpg"><font face="Arial"><img
+src="img/at4004_10m.jpg" border="0" width="320" height="218"></font></a></p>
+
+<p><font face="Arial">LED indikátory: M (žlutá) je nenulový
+obsah paměti, OVF (červená) přetečení, NEG (zelená)
+negativní výsledek.</font></p>
+
+<p><font face="Arial">Při součtu '+' a rozdílu '-' se pracuje
+s akumulátorem. Nejdříve zadejte číslo a poté operaci '+'
+nebo '-', která se má s číslem provést. Obsah akumulátoru
+nakonec zobrazíte s '='. Např. &quot;3 - 2 =&quot; zadáte jako
+&quot;3 + 2 - =&quot;.</font></p>
+
+<p><font face="Arial">Při násobení 'x' a dělení ':'
+postupujte stejně jako u současných kalkulaček, např.
+&quot;2 x 3 =&quot;.</font></p>
+
+<p><font face="Arial">Tlačítka kalkulačky tiskněte pomalu,
+asi tak max. 2 stisky za sekundu, jinak se může některý stisk
+ztratit (obsluha klávesnice je pomalá).</font></p>
+
+<p><font face="Arial">Nastavení počtu desetinných míst a
+módu zaokrouhlení se projeví až při příštím výstupu
+výsledku. Mód zaokrouhlení 'FL' (floating) zobrazí číslo s
+maximální přesností s odstraněním nevýznamných nul, ale
+projeví se jen u násobení a dělení. Mód '54' výsledek
+zaokrouhluje, mód 'N' vypne zaokrouhlování. 'DP0' až 'DP8'
+nastaví počet desetinných míst na 0 až 8.</font></p>
+
+<p><font face="Arial">'C' vymaže vše (kromě paměti), 'CE'
+vymaže chybně zadaný údaj. 'S' slouží k zadání
+záporného čísla. 'SUB' zobrazí mezivýsledek sčítání a
+odečítání. 'EX' zamění registry během násobení a dělení.
+'CM' zobrazí paměť a vymaže ji. 'RM' zobrazí paměť a
+ponechá ji. 'M+' a 'M-' přičte nebo odečte číslo od paměti.
+'ADV' je posun papíru (odřádkování).</font></p>
+
+<p><font size="5" face="Arial"><strong>Ukázkové programy</strong></font></p>
+
+<p><font face="Arial">Ukázkové programy přeložíte pomocí přiloženého
+překladače AS4. Z listingu překladu přepíšete HEX kódy do
+EEPROM paměti kitu a program spustíte. Zdrojové kódy
+ukázkových programů naleznete u zdrojového kódu firmware
+AT4004.</font></p>
+
+<p><font face="Arial"><strong>Příklad 1 - kopie vstupu na
+výstup</strong></font></p>
+
+<p><font face="Arial">Program zapíšete od adresy 0xE00 a spustíte
+tlačítky 2ND RUNE. Stisknutá tlačítka IN0..IN3 budou rozsvěcovat
+LED na OUT0 až OUT3.</font></p>
+
+<p><a href="img/at4004_11.jpg"><font face="Arial"><img
+src="img/at4004_11m.jpg" border="0" width="320" height="206"></font></a></p>
+
+<p><font face="Courier New">E00 F0<br>
+E01 FD<br>
+E02 20 30<br>
+E04 21<br>
+E05 EA<br>
+E06 F4<br>
+E07 20 40<br>
+E09 21<br>
+E0A E1<br>
+E0B 4E 02</font></p>
+
+<p><font face="Arial"><strong>Příklad 2 - blikání s LED</strong></font></p>
+
+<p><font face="Arial">Program zapíšete od adresy 0xE80 a spustíte
+tlačítky GTO E 8 0 2ND RUN. LED budou střídavě blikat s
+prodlevou 250 ms.</font></p>
+
+<p><a href="img/at4004_12.jpg"><font face="Arial"><img
+src="img/at4004_12m.jpg" border="0" width="320" height="203"></font></a></p>
+
+<p><font face="Courier New">E80 F0<br>
+E81 FD<br>
+E82 20 40<br>
+E84 21<br>
+E85 D1<br>
+E86 E1<br>
+E87 5E 97<br>
+E89 D2<br>
+E8A E1<br>
+E8B 5E 97<br>
+E8D D4 <br>
+E8E E1<br>
+E8F 5E 97<br>
+E91 D8<br>
+E92 E1<br>
+E93 5E 97<br>
+E95 4E 85<br>
+E97 22 D5<br>
+E99 24 6F <br>
+E9B 75 9B<br>
+E9D 74 9B<br>
+E9F 73 9B<br>
+EA1 72 9B<br>
+EA3 C0</font></p>
+
+<p><font face="Arial"><strong>Příklad 3 - zobrazení textu</strong></font></p>
+
+<p><font face="Arial">Program zapíšete od adresy 0xF00 a spustíte
+tlačítky 2ND RUNF. Na displeji se zobrazí text.</font></p>
+
+<p><a href="img/at4004_13.jpg"><font face="Arial"><img
+src="img/at4004_13m.jpg" border="0" width="320" height="215"></font></a></p>
+
+<p><font face="Courier New">F00 22 40<br>
+F02 23<br>
+F03 D0<br>
+F04 E2<br>
+F05 22 60<br>
+F07 23<br>
+F08 20 18<br>
+F0A 34<br>
+F0B A4<br>
+F0C E2<br>
+F0D A5<br>
+F0E E2<br>
+F0F 61<br>
+F10 A1<br>
+F11 1C 14<br>
+F13 60<br>
+F14 73 0A<br>
+F16 4F 16<br>
+F18 2A<br>
+F19 20<br>
+F1A 48<br>
+F1B 65<br>
+F1C 6C<br>
+F1D 6C<br>
+F1E 6F<br>
+F1F 20<br>
+F20 57<br>
+F21 6F<br>
+F22 72<br>
+F23 6C<br>
+F24 64<br>
+F25 21<br>
+F26 20<br>
+F27 2A</font></p>
+
+<h2><font size="5" face="Arial">Downloady</font></h2>
+
+<p><a href="dwn/AT4004_diagram.zip"><font face="Arial">Schéma
+zapojení v Eagle Free</font></a></p>
+
+<p><a href="dwn/AT4004_doc.zip"><font face="Arial">Dokumentace k
+procesoru 4004 a kalkulačce 141-PF</font></a></p>
+
+<p><a href="dwn/AT4004_help.zip"><font face="Arial">Uživatelská
+příručka kitu AT4004</font></a><font size="3" face="Arial">
+(zatím v CZ, na EN verzi se pracuje)</font></p>
+
+<p><a href="dwn/AT4004_png.zip"><font face="Arial">Grafické
+podklady (schéma a plošný spoj)</font></a></p>
+
+<p><a href="dwn/AT4004_src.zip"><font face="Arial">Zdrojové
+kódy a firmware kitu AT4004</font></a></p>
+
+<p><a href="dwn/AT4004_util.zip"><font face="Arial">Utility, překladač
+AS4</font></a></p>
+
+<h2><font face="Arial">Použité součástky</font></h2>
+
+<ul>
+    <li><font face="Arial">518-312, 1 kus, LED 5mm, červená,
+        600mcd, 60°, difúzní 503VD2E-V1-4I, 2,80 Kč </font><a
+        href="https://www.gme.cz/led-5mm-red-600-60-diff"><font
+        face="Arial">https://www.gme.cz/led-5mm-red-600-60-diff</font></a></li>
+    <li><font face="Arial">518-267, 1 kus, LED 5mm, žlutá,
+        780mcd, 60°, difúzní 503UYD2E-Y2-4G, 3,60 Kč </font><a
+        href="https://www.gme.cz/led-5mm-yellow-780-60-diff"><font
+        face="Arial">https://www.gme.cz/led-5mm-yellow-780-60-diff</font></a></li>
+    <li><font face="Arial">518-311, 1 kus, LED 5mm, zelená,
+        1700mcd, 60°, difúzní 504PGD2E-G5-2C, 4,50 Kč </font><a
+        href="https://www.gme.cz/led-5mm-green-1700-60-diff"><font
+        face="Arial">https://www.gme.cz/led-5mm-green-1700-60-diff</font></a></li>
+    <li><font face="Arial">518-266, 1 kus, LED 5mm, modrá,
+        460mcd, 60°, difúzní 504BD2E-B4-1G, 7 Kč </font><a
+        href="https://www.gme.cz/led-5mm-blue-460-60-diff"><font
+        face="Arial">https://www.gme.cz/led-5mm-blue-460-60-diff</font></a></li>
+    <li><font face="Arial">432-193, 1 kus, Mikrokontrolér
+        ATMEGA8L-8PU, 49 Kč </font><a
+        href="https://www.gme.cz/atmega8l-8pu-dil28-atmel"><font
+        face="Arial">https://www.gme.cz/atmega8l-8pu-dil28-atmel</font></a></li>
+    <li><font face="Arial">823-026, 1 kus, DIP patice 28pin
+        rozteč 2,54mm SOKL 28U, 4,30 Kč </font><a
+        href="https://www.gme.cz/sokl-28u"><font face="Arial">https://www.gme.cz/sokl-28u</font></a></li>
+    <li><font face="Arial">630-158, 25 kusů, Mikrospínač do
+        DPS, 1pól, OFF-(ON), výška 9,5mm TC-0108-T, 2,03 x 25
+        = 50,75 Kč </font><a href="https://www.gme.cz/tc-0108-t"><font
+        face="Arial">https://www.gme.cz/tc-0108-t</font></a></li>
+    <li><font face="Arial">775-069, 1 kus, LCD alfanumerický
+        displej 2x16 znaků, žlutozelený, HD44780 DM1602AYG,
+        115 Kč </font><a
+        href="https://www.gme.cz/alfanumericky-lcd-displej-16x2-zlutozeleny-hd44780"><font
+        face="Arial">https://www.gme.cz/alfanumericky-lcd-displej-16x2-zlutozeleny-hd44780</font></a></li>
+    <li><font face="Arial">832-120, 1 kus, USB 2.0 B zásuvka do
+        DPS 90° DS1099-WN0, 13 Kč </font><a
+        href="https://www.gme.cz/konektor-usb1x90b-pcb"><font
+        face="Arial">https://www.gme.cz/konektor-usb1x90b-pcb</font></a></li>
+    <li><font face="Arial">801-181, 1 kus, D-Sub 9pin zásuvka do
+        DPS 90° CAN 9 Z 90, 13 Kč </font><a
+        href="https://www.gme.cz/konektor-can-9-z-90-con"><font
+        face="Arial">https://www.gme.cz/konektor-can-9-z-90-con</font></a></li>
+    <li><font face="Arial">800-257, 1 kus, Konektor vidlice
+        rozteč 2,54mm, 2x3pin do DPS MLW06G, 6,50 Kč </font><a
+        href="https://www.gme.cz/konektor-mlw06g-con"><font
+        face="Arial">https://www.gme.cz/konektor-mlw06g-con</font></a></li>
+    <li><font face="Arial">832-238, 1 kus, Dutinková lišta
+        1x20pin, rozteč 2,54mm, výška 5,7mm, 90°pin
+        BLW120G-V5,7, 9 Kč </font><a
+        href="https://www.gme.cz/dutinkova-lista-blw20g-v5-7mm"><font
+        face="Arial">https://www.gme.cz/dutinkova-lista-blw20g-v5-7mm</font></a></li>
+    <li><font face="Arial">...alternativa: 832-048, 1 kus,
+        Dutinková lišta 1x20pin, rozteč 2,54mm, výška 8mm,
+        90°pin BLW120G-V8,0, 9,20 Kč </font><a
+        href="https://www.gme.cz/dutinkova-lista-blw820g"><font
+        face="Arial">https://www.gme.cz/dutinkova-lista-blw820g</font></a></li>
+    <li><font face="Arial">832-018, 1 kus, Kolíková lišta
+        1x20pin, rozteč 2,54mm, 90° S1G20C W90, 5,30 Kč </font><a
+        href="https://www.gme.cz/oboustranny-kolik-s1g20w-2-54mm"><font
+        face="Arial">https://www.gme.cz/oboustranny-kolik-s1g20w-2-54mm</font></a></li>
+    <li><font face="Arial">119-398, 1 kus, Metal oxidový
+        rezistor THT RM 100R 0,4W 1% 0204, 2,20 Kč </font><a
+        href="https://www.gme.cz/rm-100r-0204-0-4w-1-hitano"><font
+        face="Arial">https://www.gme.cz/rm-100r-0204-0-4w-1-hitano</font></a></li>
+    <li><font face="Arial">119-131, 8 kusů, Metal oxidový
+        rezistor THT RM 470R 0,4W 1% 0204, 8 * 2,60 = 20,8 Kč </font><a
+        href="https://www.gme.cz/rm-470r-0204-0-4w-1-yageo"><font
+        face="Arial">https://www.gme.cz/rm-470r-0204-0-4w-1-yageo</font></a></li>
+    <li><font face="Arial">119-399, 6 kusů, Metal oxidový
+        rezistor THT RM 2k2 0,4W 1% 0204, 6 * 2,20 = 13,20 Kč </font><a
+        href="https://www.gme.cz/rm-2k2-0204-0-4w-1-hitano"><font
+        face="Arial">https://www.gme.cz/rm-2k2-0204-0-4w-1-hitano</font></a></li>
+    <li><font face="Arial">120-093, 1 kus, Keramický
+        kondenzátor CK 22n/50V X7R RM5,08 10%, 1,80 Kč </font><a
+        href="https://www.gme.cz/ck-22n-50v-x7r-10-rm5-08-hitano"><font
+        face="Arial">https://www.gme.cz/ck-22n-50v-x7r-10-rm5-08-hitano</font></a></li>
+    <li><font face="Arial">120-060, 2 kusy, Keramický
+        kondenzátor CK 100n/63V Y5V RM5,08 +80/-20%, 2 * 1,80 =
+        3,60 Kč </font><a
+        href="https://www.gme.cz/ck-100n-63v-y5v-rm5-08-80-20"><font
+        face="Arial">https://www.gme.cz/ck-100n-63v-y5v-rm5-08-80-20</font></a></li>
+    <li><font face="Arial">+ plošný spoj, 6 kusů sloupek M3 x
+        8 mm, 6 kusů matka M3, 2 kusy šroubek M3, podložky M3</font></li>
+</ul>
+
+<p><font face="Arial">Součet ceny za vše 335 Kč (bez plošného
+spoje).</font></p>
+
+<p align="right"><font face="Arial">Miroslav Němeček<br>
+</font><a href="mailto:Panda38@seznam.cz"><font face="Arial">Panda38@seznam.cz</font></a></p>
+<div align="center"><center>
+
+<table border="0" width="100%">
+    <tr>
+        <td width="33%"><p align="left"><a href="../index.html"><font
+        face="Arial">&lt;&lt; Zpět</font></a></p>
+        </td>
+        <td width="33%">&nbsp;</td>
+        <td width="34%">&nbsp;</td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

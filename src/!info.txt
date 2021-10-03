@@ -1,0 +1,25 @@
+Fuses:
+------
+  ATmega8 fuse: low E4 (default E1), high D1 (default D9)
+  ATmega88 fuse: low E2 (default 62), high D7 (default DF), ext F9 (default F9)
+  ATmega168 fuse: low E2 (default 62), high D7 (default DF), ext F9 (default F9)
+  ATmega328 fuse: low E2 (default 62), high D1 (default D9), ext FF (default FF)
+
+
+clock: 8 MHz internal RC
+
+
+
+Program:
+
+0..DFF (14 pages) ROM program busicom.asm
+E00..FFF (2 pages) EEPROM program (editable)
+
+To start program:
+
+- Move pointer to start position using GO button with 3-digit address.
+- Run program using RUN button.
+
+Or alternate:
+
+- Start program at given page 000..F00 by pressing 2nd + digit.
